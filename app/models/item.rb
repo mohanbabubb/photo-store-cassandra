@@ -1,7 +1,8 @@
 class Item
 	include Cequel::Record
 	
-	key :name, :varchar
+	key :uuid, :varchar
+	column :name, :varchar
 	column :descb, :varchar
 	timestamps
 end
