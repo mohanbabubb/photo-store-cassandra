@@ -1,8 +1,9 @@
 class Item
 	include Cequel::Record
 	
-	key :uuid, :varchar
+	key :id, :timeuuid, auto: true
 	column :name, :varchar
 	column :descb, :varchar
 	timestamps
+	has_many :itemdetail
 end

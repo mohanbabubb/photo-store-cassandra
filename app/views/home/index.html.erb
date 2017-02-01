@@ -1,0 +1,12 @@
+	<h1>Hello, <%= current_user.username %>!</h1>
+
+    <p>
+      <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+    </p>
+
+	<h1>Hello, stranger.</h1>
+
+	<p>
+	  Please <%= link_to 'log in', new_user_session_path %>
+	  or <%= link_to 'sign up', new_user_registration_path %>
+	</p>

@@ -1,5 +1,5 @@
 development:
-  host: '192.168.0.198'
+  host: '127.0.0.1'
   port: 9042
   keyspace: cassandra_development
   username: 'cassandra'
