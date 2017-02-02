@@ -1,28 +1,36 @@
-<<<<<<< HEAD
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+===========================================================================
+Project: # photo-store-cassandra
 
-Things you may want to cover:
+Developement environment:
+-------------------------
+System Requirements:
+512 mb ram and 1cpu machine minimum
+RVM to be installed
+Ruby to be installed
+Passenger and  nginx to be installed
+cassandra to be installed
 
-* Ruby version
+How to install RVM:
 
-* System dependencies
+How to instatll Ruby:
 
-* Configuration
+How to install Passenger and Nginx:
 
-* Database creation
+How to install Cassandra database:
 
-* Database initialization
+Download this git repo:
 
-* How to run the test suite
+Execute the bundle install
 
-* Services (job queues, cache servers, search engines, etc.)
+Database configuration on cequel.conf
 
-* Deployment instructions
+Database migrate(creation on cassandra database):
+  rake cequel:migrate
 
-* ...
-=======
-# photo-store-cassandra
->>>>>>> c352842be30be4a8df0a269f31db739ff8d4b057
+
+Optional:
+If you are unfamiliar or dont want to spent time on building up the stack, download the pre-baked vagrant box from below list. So can start developing/ hosting immediately.
+
+
