@@ -1,0 +1,52 @@
+<div id="caro-slider" class="owl-carousel owl-theme">
+    <div class="item">
+    	<img src="http://0x0800.github.io/2048-CUPCAKES/style/img/1024.jpg" width="100%">
+    </div>
+    <div class="item">
+    	<img src="http://incrediblethings.com/wp-content/uploads/2014/01/star-wars-rings-1.jpg" width="100%">
+    </div>
+    <div class="item"> 
+    	<img src="http://www.fancydressball.co.uk/big_images1/deluxe-stormtrooper-star-wars-costume-888572-a.jpg" width="100%">
+    </div>
+    <div class="item">
+    	<img src="https://www.wired.com/images_blogs/underwire/2013/02/starwars2.jpg" width="100%">
+    </div>
+    <div class="item">
+    	<img src="http://blog.1979semifinalist.com/wp-content/uploads/2010/03/yoda-chewy.jpg" width="100%">
+    </div>
+     <div class="item">
+    	<img src="https://s-media-cache-ak0.pinimg.com/736x/84/96/47/8496479a8cb535894d11a95055bba791.jpg" width="100%">
+    </div>
+    <div class="item">
+	<img src="http://media.gettyimages.com/photos/star-wars-launch-bay-is-the-central-locale-for-guests-to-celebrate-picture-id499974298" width="100%">
+    </div>
+</div>
+
+<script>
+
+var owl = $("#caro-slider");
+owl.owlCarousel({
+    loop:true,
+    margin:10,
+    nav:true,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:5
+        }
+    }
+});
+owl.on('mousewheel', '.owl-stage', function (e) {
+    if (e.deltaY>0) {
+        owl.trigger('next.owl');
+    } else {
+        owl.trigger('prev.owl');
+    }
+    e.preventDefault();
+});
+</script>

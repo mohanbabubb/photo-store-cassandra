@@ -26,10 +26,14 @@ class ItemdetailsController < ApplicationController
   # POST /itemdetails.json
   def create
     @itemdetail = @item.itemdetail.new(itemdetail_params)
-
+    #ho = { :make => "made", :year => "2003", "india" => ["sachin ten","virender","singh"] }
+    #@itemdetail.data = ho
+    #puts @itemdetail.id
     respond_to do |format|
       if @itemdetail.save
-        format.html { redirect_to [@item, @itemdetail], notice: 'Itemdetail was successfully created.' }
+        #format.html { redirect_to [@item, @itemdetail], notice: 'Itemdetail was successfully created.' }
+	puts @itemdetail.inspect	
+        format.html { redirect_to "/items/"+@itemdetail.item_id.to_s+"/itemdetails/"+@itemdetail.id.to_s, notice: 'Itemdetail was successfully created.' }
         format.json { render :show, status: :created, location: @itemdetail }
       else
         format.html { render :new }

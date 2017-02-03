@@ -7,7 +7,8 @@ class Itemdetail
 	compact_storage
 
         def data
-		JSON.parse(read_attribute(:data)) if read_attribute(:data) != nil
+#		JSON.parse(read_attribute(:data)) if read_attribute(:data) != nil
+		read_attribute(:data) if read_attribute(:data) != nil
 	end
 
         def data=(new_data)
