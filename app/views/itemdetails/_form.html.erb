@@ -15,21 +15,7 @@
     <%= f.label :data %>
     <%= f.text_field :data %>
   </div>
-  <div class="actions">
+  <div class="actions btn btn-default">
     <%= f.submit %>
   </div>
-<button id="plus">+</button>
-<input type='hidden' id='text_box_count' value=0></input>
-<div id="mx"></div>
-<script type="text/javascript">
-$(document).on('click', '#plus', function(e){
-    var count=$('#text_box_count').val();
-    count++;
-    var cc=$('#text_box_count').val(count);
-    var currGroup = $("<div id='textboxes'></div> ");
-    currGroup.append("<label><input type='text' name='fab_strength_"+count+"' value='text"+count+"'></input></label>:<input type='text' name='fab_strength_"+count+"' value='text"+count+"'></input>");
-    jQuery("#mx").append(currGroup);
-});
-</script>
-
 <% end %>

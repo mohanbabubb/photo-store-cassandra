@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   resources :items do
 	resources :itemdetails	
   end
-  root 'items#index'
+  resources :home
+  root 'home#index'
+
   #resources :items
   #resources :itemdetails
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
