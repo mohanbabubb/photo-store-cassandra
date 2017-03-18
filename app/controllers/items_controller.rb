@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  
+  skip_before_action :require_login, only: [:show]
   # GET /items
   # GET /items.json
   def index
@@ -10,6 +10,9 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
+  end
+
+  def show2
   end
 
   # GET /items/new

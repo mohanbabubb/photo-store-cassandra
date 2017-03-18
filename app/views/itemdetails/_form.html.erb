@@ -1,4 +1,4 @@
-<%= form_for([@item, @itemdetail]) do |f| %>
+<%=form_for([@item, @itemdetail]) do |f| %>
   <% if itemdetail.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(itemdetail.errors.count, "error") %> prohibited this itemdetail from being saved:</h2>
@@ -11,11 +11,20 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :data %>
-    <%= f.text_field :data %>
-  </div>
-  <div class="actions btn btn-default">
-    <%= f.submit %>
-  </div>
+    <div class="container">
+      <div class="row">
+        <div class="control-group" id="fields">
+          <div class="field">
+                <input class="form" name="fields1[]" type="text" value="Name" /> <input class="form" name="fields2[]" type="text" placeholder="soap,butter,watch" /><br/>
+                <input class="form" name="fields1[]" type="text" value="Brand" /> <input class="form" name="fields2[]" type="text" placeholder="lux,palmer,swissTex" /><br/>
+                <input class="form" name="fields1[]" type="text" value="Quantity" /> <input class="form" name="fields2[]" type="text" placeholder="1,one,kg's,grams,litres" /><br/>
+                <input class="form" name="fields1[]" type="text" placeholder="Type Attribute" value="Attribute" /> <input class="form" name="fields2[]" type="text" placeholder="Type value" value="value"/><a href="#" onmouseover="popover" title="For example: Enter attribute as color and value as red/green,"> ?</a>
+            <br>
+            <small>Press <span class="glyphicon glyphicon-plus gs"></span> to add another form field :)</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <%= f.button :submit %>
 <% end %>

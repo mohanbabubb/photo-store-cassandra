@@ -1,0 +1,8 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2017.02.02 09:10:00 =~=~=~=~=~=~=~=~=~=~=~=
+
+gm105712#
+gm105712#
+gm105712#
+gm105712#
+Feb  2 01:08:51.730: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to down
+Feb  2 01:08:52.730: %LINK-3-UPDOWN: Interface GigabitEthernet0/0, changed state to down

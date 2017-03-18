@@ -1,14 +1,7 @@
-<div class="jumbotron">
-      <div class="container">
-        <h1>Things.Photo</h1>
-        <p>An enclyopedia of Artifacts.</p>
-        <%= render 'layouts/slider' %>
-      </div>
-    </div> 
-</div>
-<div class="jumbotron">
-	<center>
-        <%= link_to 'Sign up', new_home_path, class: 'btn btn-primary btn-lg' %>
-        </button>
-	</center>
-</div>
+<center>
+  <h3>An enclyopedia of Artifacts.</h3>
+    <br/>
+        <%= render 'pintable' %>
+  <br/>
+        <%= link_to 'Start Contributing', new_home_path, class: 'btn btn-default btn-lg' %>
+</center>

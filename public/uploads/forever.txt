@@ -1,0 +1,7 @@
+Forever (https://npmjs.org/package/forever)
+You can use forever to run Ghost as a background task. forever will also take care of your Ghost installation and it will restart the node process if it crashes.
+
+To install forever type npm install forever -g
+To start Ghost using forever from the Ghost installation directory type NODE_ENV=production forever start index.js
+To stop Ghost type forever stop index.js
+To check if Ghost is currently running type forever list

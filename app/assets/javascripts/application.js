@@ -16,3 +16,4 @@
 //= require_tree .
 //= require bootstrap-sprockets
 //= require owl.carousel
+//= require masonry/jquery.masonry

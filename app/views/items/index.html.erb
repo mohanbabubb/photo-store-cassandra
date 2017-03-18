@@ -1,12 +1,8 @@
-<div class="jumbotron">
-<div class="container">
 <div class="panel panel-default">
 <div class="panel-heading"> Item's List </div>
   <div class="panel-body">
-<p id="notice"><%= notice %></p>
-
-<h3>Add New Item <%= link_to '+', new_item_path, {class: "btn btn-info"} %></h3>
-</div>
+<h3>Add New Item <%= link_to '+', new_item_path, {class: "btn btn-info"} %> </h3>
+ </div>
 
 <table class="table table-striped">
   <thead>
@@ -22,11 +18,11 @@
       <tr>
         <td><%= item.name %></td>
         <td><%= item.descb %></td>
-        <td><%= link_to 'Show', item,{ class: "btn btn-success btn-sm"} %></td>
+        <td><%= link_to 'Show', item, {class: "btn btn-success btn-sm"} %></td>
         <td><%= link_to 'Edit', edit_item_path(item),{class: "btn btn-primary btn-sm"} %></td>
         <td><%= link_to 'Destroy', item, {class: "btn btn-danger btn-sm", method: :delete, data: { confirm: 'Are you sure?' }} %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-</div>
+<div>

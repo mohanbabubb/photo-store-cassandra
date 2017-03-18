@@ -1,0 +1,12 @@
+<div class="tranitions-enabled" id="pins">
+  <% @photos = Photo.all.where(:featured=>1).allow_filtering!
+     @photos.each do |onebyone| %>
+        <div class="box panel panel-default">
+              <img src="/uploads/<%= + onebyone.attachment %>" width="100%">
+              <h2>
+                <%= link_to Item.find_by_id(onebyone.item_id).name, item_path(onebyone.item_id) %>
+              </h2>
+            <h3><%= Item.find_by_id(onebyone.item_id).descb %></h3>
+        </div>
+      <% end %>
+  </div>

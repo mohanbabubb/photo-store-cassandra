@@ -5,7 +5,7 @@ class ItemdetailsController < ApplicationController
   # GET /itemdetails
   # GET /itemdetails.json
   def index
-    @itemdetails = @item.itemdetail
+    @itemdetails = @item.itemdetail.first(100)
   end
 
   # GET /itemdetails/1
@@ -25,9 +25,11 @@ class ItemdetailsController < ApplicationController
   # POST /itemdetails
   # POST /itemdetails.json
   def create
-    @itemdetail = @item.itemdetail.new(itemdetail_params)
-    #ho = { :make => "made", :year => "2003", "india" => ["sachin ten","virender","singh"] }
-    #@itemdetail.data = ho
+    @itemdetail = @item.itemdetail.new(params.permit(:fields1,:fields2,:item_id,:id))
+    #ho = { :make => "made", :year => "2003", "india" => "singh"
+
+    @itemdetail.data = Hash[Hash[itemdetail_params[:fields1].zip itemdetail_params[:fields2]].map {|k,v| [k,v.empty? ? "nil" : v]}]
+
     #puts @itemdetail.id
     respond_to do |format|
       if @itemdetail.save
@@ -46,8 +48,8 @@ class ItemdetailsController < ApplicationController
   # PATCH/PUT /itemdetails/1.json
   def update
     respond_to do |format|
-      if @itemdetail.update_attributes(itemdetail_params)
-        format.html { redirect_to [@item, @itemdetail], notice: 'Itemdetail was successfully updated.' }
+      if @itemdetail.update_attributes(params.permit(:fields1,:fields2))
+        format.html { redirect_to "/items/"+@itemdetail.item_id.to_s+"/itemdetails/"+@itemdetail.id.to_s, notice: 'Itemdetail was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render :edit }
@@ -61,7 +63,7 @@ class ItemdetailsController < ApplicationController
   def destroy
     @itemdetail.destroy
     respond_to do |format|
-      format.html { redirect_to item_itemdetails_url(@item), notice: 'Itemdetail was successfully destroyed.' }
+      format.html { redirect_to item_url(@item), notice: 'Itemdetail was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,15 +71,15 @@ class ItemdetailsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_itemdetail
-      @itemdetail = @item.itemdetail.find(params[:id])
+      @itemdetail = @item.itemdetail.find_by_id(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def itemdetail_params
-      params.require(:itemdetail).permit(:data,:id,:item_id)
+      params
     end
     
     def load_item
-      @item = Item.find(params[:item_id])
+      @item = Item.find_by_id(params[:item_id])
     end
 end

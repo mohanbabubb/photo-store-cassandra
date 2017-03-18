@@ -1,10 +1,9 @@
-<div class="jumbotron" >
-<div class="container">
-    <h1 class="largeHeader">Sign up</h1>
-    <p class="col_4">Already signed up? You can <a href="">log in here.</a></p>
+<div class="panel panel-default">
+    <h1 class="largeHeader" align="center">Register</h1>
     <div class="row">
     <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@user, url: home_index_path ) do |f| %>
+
+    <%= form_for @user, :url => { :action => 'create' } do |f| %>
       <%= f.label :Username %>
       <%= f.text_field :username %>
       <br>
@@ -12,14 +11,15 @@
       <%= f.email_field :email %>
       <br>
       <%= f.label :password %>
-      <%= f.password_field :password %>
+      <%= f.password_field :password, { :class => 'text_input'} %>
       <br>
       <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation %>
+      <%= f.password_field :password_confirmation, { :class => 'text_input'} %>
+      <br>
 	<br>
       <%= f.submit "Create my account", class: "btn btn-primary" %>
     <% end %>
+
   </div>
 </div>
 </div><!-- end mainContent -->
-</div>

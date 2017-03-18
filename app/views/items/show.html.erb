@@ -1,4 +1,3 @@
-<div class="jumbotron">
 <div class="container">
 <p id="notice"><%= notice %></p>
 
@@ -11,10 +10,91 @@
   <strong>Description:</strong>
   <%= @item.descb %>
 </p>
+  <p>
+    <strong>Photos:</strong>
+    <% if signed_in? -%>
+    <%= link_to 'Add Photos', new_item_photo_path(@item), {class: "btn btn-default"}  %> | <%= link_to 'Show or Edit Photos', item_photos_path(@item), {class: "btn btn-default"}  %>
+    <% end -%>
+    </p>
 
-
-
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+<div id="caro-slider" class="owl-carousel owl-theme">
+<% @photos = Item.find(@item.id).photo.all
+    @photos.each do |photo|
+   %>
+    <div class="item">
+     <%= link_to item_path(photo.item_id) do %>
+     <img src="/uploads/<%= + photo.attachment %>" width="100%">
+     <% end %>
+    </div>
+   <% end %>
 </div>
+  <script>
+
+      var owl = $("#caro-slider");
+      owl.owlCarousel({
+          items:4,
+          loop:false,
+          margin:10,
+          autoplay:false,
+          autoplayTimeout:1000,
+          autoplayHoverPause:true
+      });
+      $('.play').on('click',function(){
+          owl.trigger('play.owl.autoplay',[1000])
+      })
+      $('.stop').on('click',function(){
+          owl.trigger('stop.owl.autoplay')
+      })
+  </script>
+<p>
+  <strong>Item Details:</strong>
+  <% if signed_in? -%>
+  <%= link_to 'Add Item Details', new_item_itemdetail_path(@item), {class: "btn btn-default"} %>
+      <% end -%>
+      <div class="container">
+      <table>
+        <thead>
+        <% if signed_in? -%>
+        <tr>
+          <th>Itemattribute</th>
+          <th>Itemvalue</th>
+          <th colspan="3"></th>
+        </tr>
+        <% end -%>
+        </thead>
+
+        <tbody>
+        <% Item.find(@item.id).itemdetail.all.each do |itemdetail| %>
+            <% if signed_in? -%>
+            <tr>
+              <td><%= itemdetail.data %></td>
+              <td><%= link_to 'Show', item_itemdetail_path(@item, itemdetail.id) %> | </td>
+              <td><%= link_to 'Destroy', item_itemdetail_path(@item, itemdetail.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+            <% else -%>
+                <tr>
+                  <% itemdetail.data.each do |key,value| %>
+                      <%= key %> : <a><%= value %> </a><br/>
+                  <% end %>
+                </tr>
+            <% end -%>
+
+        <% end %>
+        </tbody>
+      </table>
+      </div>
+      </p>
+<br/>
+                <center>
+                <% if signed_in? -%>
+                <div class="container">
+      <%= link_to 'Go To My List', items_path, {class: "btn btn-info"} %>
+      <%= link_to('Home Page', home_index_path, method: :get,class: "btn btn-info") %>
+                      <% else -%>
+      <%= link_to('Back', home_index_path, method: :get,class: "btn btn-info") %>
+                  <% end -%>
+                </div>
+                    <br/>
+                      </center>
+
 </div>

@@ -6,4 +6,5 @@ class Item
 	column :descb, :varchar
 	timestamps
 	has_many :itemdetail
+	has_many :photo
 end
