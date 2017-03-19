@@ -3,5 +3,9 @@
     <br/>
         <%= render 'pintable' %>
   <br/>
-        <%= link_to 'Start Contributing', new_home_path, class: 'btn btn-default btn-lg' %>
+  <% if signed_in? -%>
+  <%= link_to 'Start Contributing', items_path, class: 'btn btn-default btn-lg' %>
+	<% else -%>
+ <%= link_to 'Start Contributing', new_home_path, class: 'btn btn-default btn-lg' %>
+	<% end -%>
 </center>
