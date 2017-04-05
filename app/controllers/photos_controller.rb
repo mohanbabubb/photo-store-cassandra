@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController
-  before_action :load_item
-  before_action :set_photo, only: [:show, :edit, :update, :destroy]
+  before_action :load_item, :except => :upload
+  before_action :set_photo, :only => [:show, :edit, :update, :destroy]
 
   # GET /photos
   # GET /photos.json
@@ -16,6 +16,10 @@ class PhotosController < ApplicationController
   # GET /photos/new
   def new
     @photo = @item.photo.new
+  end
+
+  def new2
+
   end
 
   # GET /photos/1/edit
@@ -41,6 +45,25 @@ class PhotosController < ApplicationController
         format.json { render json: @photo.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def upload
+    uploaded_pics = params[:file] # Take the files which are sent by HTTP POST request.
+    puts uploaded_pics.inspect
+    time_footprint = Time.now.to_i.to_formatted_s(:number) # Generate a unique number to rename the files to prevent duplication
+    uploaded_pics.each do |pic|
+      puts "CHECK HERE!!"
+      puts pic.inspect
+      puts pic["0"].inspect
+      File.open(Rails.root.join('public', 'uploads', pic["1"].original_filename), 'wb') do |file|
+        file.write(pic["1"].read)
+        File.rename(file, 'public/uploads/' + time_footprint + pic["1"].original_filename)
+      end
+    end
+  end
+
+  def create2
+
   end
 
   # PATCH/PUT /photos/1

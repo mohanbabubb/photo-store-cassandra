@@ -4,9 +4,9 @@
     <title>Database of Things</title>
     <%= csrf_meta_tags %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', 'data-turbolinks-track'=> 'true' %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+    <%= yield(:css) %> <!-- We use this section for our CSS files -->
     </head>
     <body>
     <div class="container">
@@ -16,6 +16,7 @@
       <div class="row align-items-center">
         <div class="panel panel-default">
 <%= yield %>
+          <%= yield(:javascript)%><!-- We put our JavaScript tags here -->
         </br>
         </div>
       </div>

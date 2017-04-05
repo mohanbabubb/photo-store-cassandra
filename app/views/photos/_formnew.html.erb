@@ -1,0 +1,54 @@
+<%= content_for(:css) do %>
+
+    <%= stylesheet_link_tag 'dropzone' %>
+    <%= stylesheet_link_tag 'basic' %>
+
+<% end %>
+
+<%= form_for :request,:url => request.base_url+'/item/:item_id/photo/create2', :html => {:id => 'myForm'} do %>
+
+<label for="name">Name:</label>
+<input type="text" name="name" id="name" class="form-control">
+
+<input type=hidden name="attachment" id='attachment'>
+<br/>
+<!-- We use this <div> element to initialize our Dropzone -->
+<div id="mydropzone" class="dropzone"></div>
+<!-- This <div> elements shows a suitable message after a successful upload. -->
+<div id="msgBoard"></div>
+<br/>
+<input type='submit' value="Upload">
+</div>
+</div>
+    <% end %>
+
+<%= content_for(:javascript) do %>
+    <!-- include the dropzone library itself. -->
+<%= javascript_include_tag "dropzone" %>
+    <script type="text/javascript">
+        var AUTH_TOKEN=$('meta[name="csrf-token"]').attr('content');
+        Dropzone.autoDiscover = false;
+        var myDropzone = new Dropzone("div#mydropzone",{
+            url: "<%= request.base_url %>/uploadfiles",
+            autoProcessQueue: false,
+            uploadMultiple: true,
+            addRemoveLinks:true,
+            parallelUploads:10,
+            params:{
+                'authenticity_token':  AUTH_TOKEN
+            },
+            successmultiple: function(data,response){
+                $('#msgBoard').append(response.message).addClass("alert alert-success");
+                $('#msgBoard').delay(2000).fadeOut();
+                $('#attachment').val(response.filesList);
+                $('#myForm').off('submit').submit();
+            }
+        });
+        $('#myForm').off('submit').submit(function(e){
+            if(myDropzone.getQueuedFiles().length > 0){
+                e.preventDefault();
+                myDropzone.processQueue();
+            }
+        });
+    </script>
+<% end %>
